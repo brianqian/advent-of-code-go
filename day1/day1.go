@@ -9,18 +9,18 @@ import (
 	"strconv"
 )
 
-func check(err error, id int) {
+func check(err error) {
 	if err != nil {
-		fmt.Println(id)
+		fmt.Println(err)
 		log.Fatal("Error!")
 	}
 }
 
-func Day1() {
+func main() {
 	fmt.Println("Day 1")
 
 	f, err := os.Open("./day1data.txt")
-	check(err, 1)
+	check(err)
 	defer f.Close()
 
 	scanner := bufio.NewScanner(f)
@@ -30,7 +30,6 @@ func Day1() {
 
 	for scanner.Scan() {
 		text := scanner.Text()
-
 		if text == "" {
 			sum := 0
 			for _, val := range current {
@@ -40,11 +39,11 @@ func Day1() {
 			current = []int{}
 		} else {
 			asInt, err := strconv.Atoi(text)
-			check(err, 2)
+			check(err)
 			current = append(current, asInt)
 		}
 	}
 
 	fmt.Println(max)
-
+	main_2()
 }
