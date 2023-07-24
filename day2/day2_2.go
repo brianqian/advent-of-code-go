@@ -19,12 +19,6 @@ func main2() {
 	scanner := bufio.NewScanner(f)
 	score := 0
 
-	rps := map[string]string{
-		"A": "X",
-		"B": "Y",
-		"C": "Z",
-	}
-
 	toPoints := map[string]int{
 		"X": 1,
 		"Y": 2,
@@ -36,7 +30,7 @@ func main2() {
 		villain := c[0]
 		hero := c[1]
 
-		result, err := determineChoice(villain, hero, toPoints, rps)
+		result, err := determineChoice(villain, hero, toPoints)
 		if err != nil {
 			panic(err)
 		}
@@ -48,7 +42,13 @@ func main2() {
 
 }
 
-func determineChoice(villain string, outcome string, p map[string]int, r map[string]string) (int, error) {
+func determineChoice(villain string, outcome string, p map[string]int) (int, error) {
+
+	r := map[string]string{
+		"A": "X",
+		"B": "Y",
+		"C": "Z",
+	}
 	if outcome == "Y" {
 		return p[r[villain]] + 3, nil
 	}
